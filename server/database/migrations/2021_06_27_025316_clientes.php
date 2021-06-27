@@ -17,7 +17,7 @@ class Clientes extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('direccion');
-            $table->string('correo',300);
+            $table->string('correo',300)->unique();
             $table->timestamps();
         });
     }

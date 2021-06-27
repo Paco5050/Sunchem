@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
+
 use App\Traits;
 
 class Usuario extends Model implements AuthenticatableContract, AuthorizableContract
@@ -34,4 +35,9 @@ class Usuario extends Model implements AuthenticatableContract, AuthorizableCont
     ];
 
     protected $encryptable = ['clave'];
+
+    function hasRole($_role){
+        $role = Role::where('id',$this->roles_id)->first();
+        return $role->nombre == $_role;
+    }
 }

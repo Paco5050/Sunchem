@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\EstadoEmpleado;
 use Illuminate\Database\Seeder;
 
 class EstadoEmpleadoTableSeeder extends Seeder
@@ -13,6 +14,13 @@ class EstadoEmpleadoTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $app = new EstadoEmpleado();
+        $app->nombre = 'despedido';
+        $app->save();
+
+        $app = new EstadoEmpleado();
+        $app->nombre = 'contratado';
+        $app->save();
+
     }
 }

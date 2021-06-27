@@ -18,8 +18,13 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfesionesTableSeeder::class);
         $this->call(EstadoEmpleadoTableSeeder::class);
 
+        // ----
         $this->call(UsuariosTableSeeder::class);
         $this->call(EmpleadosTableSeeder::class);
 
+        $this->call(ClientesTableSeeder::class);
+        $this->call(ReclamosTableSeeder::class);
+        $this->call(PropuestasTableSeeder::class);
+        $this->call(AnalisisTableSeeder::class);
     }
 }

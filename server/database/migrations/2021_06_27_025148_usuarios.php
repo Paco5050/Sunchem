@@ -18,11 +18,7 @@ class Usuarios extends Migration
             $table->string('usuario');
             $table->string('clave');
             $table->string('api_token',50)->nullable();
-            $table->unsignedBigInteger('roles_id');
-            $table->foreign('roles_id')
-                ->references('id')
-                ->on('roles');
-
+            $table->foreignId('roles_id')->constrained();
             $table->timestamps();
         });
     }

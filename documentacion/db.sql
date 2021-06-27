@@ -66,14 +66,17 @@ create table if not exists empleados
 
 create table if not exists correos
 (
-    id           bigserial not null
+    id          bigserial    not null
         constraint correos_pkey
             primary key,
-    empleados_id bigint    not null
-        constraint correos_empleados_id_foreign
-            references empleados,
-    created_at   timestamp(0),
-    updated_at   timestamp(0)
+    correo      varchar(255) not null
+        constraint correos_correo_unique
+            unique,
+    usuarios_id bigint       not null
+        constraint correos_usuarios_id_foreign
+            references usuarios,
+    created_at  timestamp(0),
+    updated_at  timestamp(0)
 );
 
 create table if not exists profesiones
@@ -88,15 +91,16 @@ create table if not exists profesiones
 
 create table if not exists preguntas
 (
-    id           bigserial    not null
+    id          bigserial    not null
         constraint preguntas_pkey
             primary key,
-    respuesta    varchar(240) not null,
-    empleados_id bigint       not null
-        constraint preguntas_empleados_id_foreign
-            references empleados,
-    created_at   timestamp(0),
-    updated_at   timestamp(0)
+    pregunta    varchar(240) not null,
+    respuesta   varchar(240) not null,
+    usuarios_id bigint       not null
+        constraint preguntas_usuarios_id_foreign
+            references usuarios,
+    created_at  timestamp(0),
+    updated_at  timestamp(0)
 );
 
 create table if not exists empleados_profesiones

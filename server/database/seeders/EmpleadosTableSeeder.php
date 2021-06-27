@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Empleado;
 use Illuminate\Database\Seeder;
 
 class EmpleadosTableSeeder extends Seeder
@@ -13,6 +14,20 @@ class EmpleadosTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $app = new Empleado();
+        $app->nombre = 'juan';
+        $app->apellido = 'perez';
+        $app->estado_empleado_id = '1';
+        $app->usuario_id = 1;
+        $app->direccion = 'avenida calle 1234b';
+        $app->save();
+
+        $app = new Empleado();
+        $app->nombre = 'carlos';
+        $app->apellido = 'larrazabal';
+        $app->estado_empleado_id = '1';
+        $app->usuario_id = 2;
+        $app->direccion = 'avenida calle 33A-1-16';
+        $app->save();
     }
 }

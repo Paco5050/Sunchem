@@ -15,12 +15,9 @@ class Correos extends Migration
     {
         Schema::create('correos',function (Blueprint $table){
            $table->id();
-           $table->unsignedBigInteger('empleados_id');
-           $table->foreign('empleados_id')
-                  ->references('id')
-                  ->on('empleados');
-
-            $table->timestamps();
+           $table->string('correo')->unique();
+           $table->foreignId('usuarios_id')->constrained();
+           $table->timestamps();
         });
     }
 

@@ -15,8 +15,9 @@ class Preguntas extends Migration
     {
         Schema::create('preguntas',function(Blueprint $table){
             $table->id();
+            $table->string('pregunta',240);
             $table->string('respuesta',240);
-            $table->foreignId('empleados_id')->constrained('empleados');
+            $table->foreignId('usuarios_id')->constrained();
             $table->timestamps();
         });
     }
