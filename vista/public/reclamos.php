@@ -12,7 +12,7 @@
     <!-- Custom styles for this template -->
 
     <!-- Bootstrap core CSS -->
-    <link href="../../resources/css/bootstrap/bootstrap.min.css" rel="stylesheet">  
+    <link href="../../resources/css/bootstrap/bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body class="bg-white">
@@ -23,10 +23,10 @@
         <h2>Reclamos de Cliente</h2>
         <p class="lead">Ingrese los datos en los campos correspondientes para responder a su reclamo.</p>
       </div>
-      
+
       <div>
         <form class="row g-3 needs-validation ms-2 mt-2" novalidate>
-          <div class="row">    
+          <div class="row">
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-6 ">
@@ -45,9 +45,9 @@
                     Please select a valid state.
                     </div>
                 </div>
-              </div>              
+              </div>
               <div class="row">
-                
+
                 <div class="col-md-6">
                     <label for="validationCustom04" class="form-label">Producto</label>
                     <select class="form-select" id="validationCustom04" required>
@@ -74,23 +74,23 @@
                   </div>
                 </div>
               </div>
-              
+
             </div>
-          </div>  
+          </div>
         </form>
       </div>
-      
+
       <div class="mt-auto">
         <br>
-        <a href="index2.php" class="btn btn-dark w-25 py-2 m-4 rounded mx-auto d-block mt-6">Enviar Reclamo</a>
+        <a href="index.php" class="btn btn-dark w-25 py-2 m-4 rounded mx-auto d-block mt-6">Enviar Reclamo</a>
       </div>
-      
+
     </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../resources/js/efectos/jquery.min.js"></script>
     <script src="../../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../../resources/js/dashboard/dashboard.js"></script>
- 
+
   </body>
 </html>

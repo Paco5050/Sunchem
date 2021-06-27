@@ -1,6 +1,6 @@
 
-<!-- W3hubs.com - Download Free Responsive Website Layout Templates designed on HTML5 
-   CSS3,Bootstrap,Tailwind CSS which are 100% Mobile friendly. w3Hubs all Layouts are responsive 
+<!-- W3hubs.com - Download Free Responsive Website Layout Templates designed on HTML5
+   CSS3,Bootstrap,Tailwind CSS which are 100% Mobile friendly. w3Hubs all Layouts are responsive
    cross browser supported, best quality world class designs. -->
 
    <!doctype html>
@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <link href="../../resources/css/dashboard/login2.css" rel="stylesheet">
     <title>SunChemical</title>
-    <style>
-        
-    </style>
 </head>
 
 <body>
@@ -35,7 +32,7 @@
                         required>
                 </div>
                 <div class="pt-1"><a href="Recuperaciones.php" id="emailHelp" class="form-text text-muted text-decoration-none">¿Has olvidado tu contraseña?</a></div>
-                <a href="index2.php" class="btn btn-dark w-75 py-2 btn-outline-light rounded mx-auto d-block mt-3">Iniciar Sesión</a>
+                <a href="index.php" class="btn btn-dark w-75 py-2 btn-outline-light rounded mx-auto d-block mt-3">Iniciar Sesión</a>
                 <div class="mt-auto">
                     <br>
                 </div>

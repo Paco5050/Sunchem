@@ -18,7 +18,7 @@
     <!-- Custom styles for this template -->
     <link href="../../resources/css/dashboard/dashboard.css" rel="stylesheet">
 
-    
+
 </head>
 
 <body class="g-0">
@@ -32,11 +32,11 @@
             </div>
             <div class="col-lg-6">
                 <img class="" src="../../resources/img/dashboard/crud_usuario.png" alt="" width="70px">
-            </div>    
-        </div>  
+            </div>
+        </div>
         <div class="row" id="tabla"></div>
-    </div>   
-    
+    </div>
+
     <!-- Modal Crear-->
     <div class="modal fade col-lg-12" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="modal-body">
                     <form class="row g-3 needs-validation ms-2 mt-2" novalidate>
-                        <div class="row">    
+                        <div class="row">
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Reclamo</label>
                                 <select class="form-select" required>
@@ -63,16 +63,16 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row"> 
+                        <div class="row">
                             <div class="col-md-12 mb-3 birthday_datepicker">
                                 <div class="birthday_datepicker">
                                     <label class="mb-2">Fecha:</label>
                                     <input type="date"  class=" form-control" placeholder="(yyyy/mm/dd)"/>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        <div class="row">  
+                        <div class="row">
                             <div class="col-md-12">
                                 <label  class="form-label">Análisis</label>
                                 <textarea class="form-control"  rows="3"></textarea>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="modal-body">
                     <form class="row g-3 needs-validation ms-2 mt-2" novalidate>
-                        <div class="row">    
+                        <div class="row">
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Reclamo</label>
                                 <select class="form-select" required>
@@ -155,7 +155,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row">  
+                        <div class="row">
                             <div class="col-md-3 mb-3">
                                 <label for="validationCustom01" class="form-label">Estatus</label>
                                 <select class="form-select" required>
@@ -164,7 +164,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row">  
+                        <div class="row">
                             <div class="col-md-3 mb-3 ">
                                 <div class="">
                                     <label class="mb-2">Fecha:</label>
@@ -189,7 +189,7 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
-    
+
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
@@ -202,7 +202,7 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#tabla').load('../../app/api/tablaanalisis.php');
+            $('#tabla').load('../../app/api/tablaAnalisis.php');
         });
     </script>
 </body>
