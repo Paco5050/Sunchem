@@ -9,9 +9,6 @@ $router->get('/', function () use ($router) {
 
 $router->group(['middleware' => 'auth'], function() use ($router){
 
-
-
-
     $router->group(['middleware' => 'role:administrador'], function() use ($router){
     });
     $router->group(['middleware' => 'role:básico'], function() use ($router){

@@ -61,5 +61,6 @@ class UsuariosTableSeeder extends Seeder
         $question->respuesta = 'chevrolet';
         $question->usuarios_id = $user->id;
         $question->save();
+
     }
 }

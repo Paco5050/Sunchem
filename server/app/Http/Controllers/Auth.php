@@ -20,7 +20,8 @@ class Auth extends Controller
         $userName = $request->json()->get('usuario');
         $password = md5($request->json()->get('clave'));
 
-        $app = Usuario::where('usuario', $userName)
+        $app = Usuario::query()
+            ->where('usuario', $userName)
             ->where('clave', $password)
             ->first();
         if (!$app)
@@ -40,7 +41,9 @@ class Auth extends Controller
 
     function logout(Request $request)
     {
-        Usuario::where('api_token', $request->json()->get('api_token'))->update(['api_token' => null]);
+        Usuario::query()
+                ->where('api_token', $request->json()->get('api_token'))
+                ->update(['api_token' => null]);
         return ResponseDefault::getMessage(ResponseDefault::EXIT_SYSTEM)->json();
     }
 
