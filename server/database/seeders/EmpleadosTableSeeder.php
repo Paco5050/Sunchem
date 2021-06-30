@@ -15,6 +15,7 @@ class EmpleadosTableSeeder extends Seeder
     public function run()
     {
         $app = new Empleado();
+        $app->documento_identidad = '123456789';
         $app->nombre = 'juan';
         $app->apellido = 'perez';
         $app->estado_empleado_id = '1';
@@ -23,6 +24,7 @@ class EmpleadosTableSeeder extends Seeder
         $app->save();
 
         $app = new Empleado();
+        $app->documento_identidad = '987654321';
         $app->nombre = 'carlos';
         $app->apellido = 'larrazabal';
         $app->estado_empleado_id = '1';

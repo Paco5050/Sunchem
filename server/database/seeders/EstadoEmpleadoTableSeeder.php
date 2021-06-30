@@ -14,12 +14,13 @@ class EstadoEmpleadoTableSeeder extends Seeder
      */
     public function run()
     {
-        $app = new EstadoEmpleado();
-        $app->nombre = 'despedido';
-        $app->save();
 
         $app = new EstadoEmpleado();
         $app->nombre = 'contratado';
+        $app->save();
+
+        $app = new EstadoEmpleado();
+        $app->nombre = 'despedido';
         $app->save();
 
     }

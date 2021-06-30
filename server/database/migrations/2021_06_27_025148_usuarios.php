@@ -15,9 +15,9 @@ class Usuarios extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('usuario');
+            $table->string('usuario')->unique();
             $table->string('clave');
-            $table->string('api_token',50)->nullable();
+            $table->string('api_token',50)->nullable()->unique();
             $table->foreignId('roles_id')->constrained();
             $table->timestamps();
         });

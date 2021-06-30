@@ -16,7 +16,7 @@ class Analisis extends Migration
         Schema::create('analisis',function (Blueprint $table){
             $table->id();
             $table->string('solucion',250);
-            $table->foreignId('propuestas_id')->constrained();
+            $table->foreignId('propuestas_id')->unique()->constrained();
             $table->foreignId('empleados_id')->constrained();
             $table->timestamps();
         });

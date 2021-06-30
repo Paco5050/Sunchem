@@ -30,4 +30,15 @@ class Propuesta extends Controller
         $response->setData($propuestas);
         return $response->json();
     }
+    public function ProposelOfClaim($id){
+        $Propuestas = Models\Propuesta::query()
+                    ->where('reclamos_id',$id)
+                    ->get();
+        if(!$Propuestas){
+            return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT)->json();
+        }
+        $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
+        $response->setData($Propuestas);
+        return $response->json();
+    }
 }

@@ -29,13 +29,22 @@ class Reclamo extends Controller
             return ResponseDefault::getMessage(ResponseDefault::ERROR)->json();
         }
     }
-    public function All(){
+    public function All()
+    {
         $reclamo = Models\Reclamo::all();
-        if(!$reclamo){
+
+        if (!$reclamo) {
             return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT);
         }
         $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
         $response->setData($reclamo);
-        return $response;
+        return $response->json();
+    }
+    public function TypesOfClaims()
+    {
+        $TiposReclamos = Models\TiposReclamo::all();
+        $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
+        $response->setData($TiposReclamos);
+        return $response->json();
     }
 }

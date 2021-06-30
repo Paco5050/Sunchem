@@ -35,12 +35,27 @@ class Analisis extends Controller
         }
     }
     public function All(){
-        $analisis = Models\Analisis::all();
-        if(!$analisis){
-            return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT)->json();
-        }
-        $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
-        $response->setData($analisis);
-        return $response->json();
+
+        $analisis = Models\Analisis::query()
+            ->join('propuestas','analisis.propuestas_id', '=', 'propuestas.id')
+            ->join('reclamos','reclamos.id','=','propuestas.reclamos_id')
+            ->select(
+                'analisis.id as analisis_id',
+                'analisis.solucion as analisis',
+                'analisis.created_at as analisis_fecha',
+                'propuestas.id as propuesta_id',
+                'propuestas.propuesta as propuesta',
+                'propuestas.created_at as propuestas_fecha',
+                'reclamos.id as reclamos_id',
+                'reclamos.mensaje as reclamo',
+                'reclamos.created_at as reclamos_fecha'
+            )->where('propuestas.estado',true)->get();
+
+            if(count($analisis) == 0){
+                return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT)->json();
+            }
+            $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
+            $response->setData($analisis);
+            return $response->json();
     }
 }

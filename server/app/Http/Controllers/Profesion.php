@@ -9,30 +9,42 @@ use App\Models;
 class Profesion extends Controller
 {
     public function Insert(Request $request){
+        $this->validate($request,[
+            'profesion'=>'required'
+        ]);
         $profesion = new Models\Profesion();
         $profesion->nombre = mb_strtolower($request->json()->get('profesion'));
         $profesion->save();
-        return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
+        $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
+        $response->setData($profesion->id);
+        return $response->json();
     }
     public function All(){
         $profesiones = Models\Profesion::all();
         if(!$profesiones){
-            return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT);
+            return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT)->json();
         }
         $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
         $response->setData($profesiones);
-        return $response;
+        return $response->json();
     }
-    public function Update(Response $response){
-        $this->validate($response,[
+    public function Update(Request $request){
+        $this->validate($request,[
             'id'=>'required',
-            'nombre'=>'required'
+            'profesion'=>'required'
         ]);
-        $profesiones = Models\Profesion::query()
-                        ->where('id',$response->json()->get('id'))
-                        ->first();
-        $profesiones->nombre = strtolower($response->json()->get('nombre'));
-        $profesiones->save();
-        return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
+        try {
+            $profesiones = Models\Profesion::query()
+                ->where('id',$request->json()->get('id'))
+                ->first();
+            $profesiones->nombre = strtolower($request->json()->get('profesion'));
+            $profesiones->save();
+            return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
+
+        }catch (\Exception $err){
+            $response = ResponseDefault::getMessage(ResponseDefault::ERROR);
+            $response->setData($err);
+            return $response->json();
+        }
     }
 }

@@ -16,10 +16,19 @@ class Cliente extends Controller
             'direccion'=>'required',
             'correo' =>'required'
         ]);
+
+        $correo = strtolower($request->json()->get('correo'));
+        $cliente = Models\Cliente::query()
+                    ->where('correo',$correo)
+                    ->first();
+
+        if($cliente){
+            return ResponseDefault::getMessage(ResponseDefault::EMAIL_IN_USE)->json();
+        }
         $cliente            = new Models\Cliente();
         $cliente->nombre    = $request->json()->get('nombre');
         $cliente->direccion = $request->json()->get('direccion');
-        $cliente->correo    = $request->json()->get('correo');
+        $cliente->correo    = $correo;
         $cliente->save();
 
         $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);

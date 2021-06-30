@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use \Illuminate\Http\Request;
 use App\Http\Response\ResponseDefault;
 use App\Models;
+use Prophecy\Exception\Exception;
 
 class Administrador extends Controller
 {
@@ -15,7 +16,6 @@ class Administrador extends Controller
         $this->validate($request, [
             'usuario' => 'required',
             'clave' => 'required',
-            'roles_id' => 'required',
             'correo' => 'required',
             'pregunta' => 'required',
             'respuesta' => 'required',
@@ -80,6 +80,9 @@ class Administrador extends Controller
 
     public function CheckEmail(Request $request)
     {
+        $this->validate($request,[
+            'correo' => 'required'
+        ]);
         $correo = Models\Correo::query()
                     ->where('correo', strtolower($request->json()->get('correo')))
                     ->first();
@@ -91,6 +94,9 @@ class Administrador extends Controller
 
     public function CheckUser(Request $request)
     {
+        $this->validate($request,[
+            'usuario' => 'required'
+        ]);
         $usuario = Models\Usuario::query()
                     ->where('usuario', strtolower($request->json()->get('usuario')))
                     ->first();
@@ -136,29 +142,36 @@ class Administrador extends Controller
             $empleado->save();
 
             $correo = Models\Correo::query()
-                        ->where('correo', strtolower($request->json()->get('correo')))
+                        ->where('usuarios_id', $empleado->usuario_id)
                         ->first();
             $correo->correo = strtolower($request->json()->get('correo'));
             $correo->save();
 
             return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
         } catch (\Exception $err) {
-            return ResponseDefault::getMessage(ResponseDefault::ERROR)->json();
+            $response  = ResponseDefault::getMessage(ResponseDefault::ERROR);
+            $response->setData($err);
+            return $response->json();
         }
     }
 
     public function LayOffStaff($id)
     {
-        $empleado = Models\Empleado::query()
-                    ->where('id', $id)
-                    ->where('estado_empleado_id', 1)
-                    ->first();
-        if (!$empleado) {
-            return ResponseDefault::getMessage(ResponseDefault::ERROR)->json();
-        }
+        try {
 
-        $empleado->estado_empleado_id = 0;
-        $empleado->save();
-        return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
+            $empleado = Models\Empleado::query()
+                ->where('id', $id)
+                ->where('estado_empleado_id', 1)
+                ->first();
+            if (!$empleado) {
+                return ResponseDefault::getMessage(ResponseDefault::ERROR)->json();
+            }
+
+            $empleado->estado_empleado_id = 2;
+            $empleado->save();
+            return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
+        }catch (\Exception $err){
+            var_dump($err);
+        }
     }
 }
