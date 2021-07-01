@@ -11,6 +11,7 @@ $router->get('/', function () use ($router) {
 $router->post('login', 'Auth@login');
 
 // cliente
+$router->post('CorreoCliente','Cliente@CheckEmail');
 $router->post('Cliente', 'Cliente@Insert');
 $router->put('Cliente', 'Cliente@UpdateDirection');
 $router->post('Reclamo', 'Reclamo@Insert');

@@ -40,14 +40,35 @@ class Cliente extends Controller
             'id' => 'required',
             'direccion' => 'required'
         ]);
-        $cliente = Models\Cliente::query()
-            ->where('id',$request->json()->get('id'))->first();
+        try{
+            $cliente = Models\Cliente::query()
+                ->where('id',$request->json()->get('id'))->first();
 
-        $cliente->direccion = $request->json()->get('direccion');
-        $cliente->save();
-        $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
-        $response->setData($cliente->id);
-        return $response->json();
+            $cliente->direccion = $request->json()->get('direccion');
+            $cliente->save();
+            $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
+            $response->setData($cliente->id);
+            return $response->json();
+        }catch(\Exception $err){
+            $response = ResponseDefault::getMessage(ResponseDefault::ERROR);
+            $response->setData($err);
+            return $err->json();
+        }
+    }
+    public function CheckEmail(Request $request){
+        $this->validate($request,[
+            'correo' =>'required'
+        ]);
+        $correo = strtolower($request->json()->get('correo'));
+        $cliente = Models\Cliente::query()
+                    ->where('correo',$correo)
+                    ->first();
+        if($cliente){
+            $response = ResponseDefault::getMessage(ResponseDefault::EMAIL_IN_USE);
+            $response->setData($cliente);
+            return $response->json();
+        }
+        return false;
     }
 }
 

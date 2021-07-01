@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../resources/img/dashboard/icono.png" type="favicon/x-icon">
+    <link rel="icon" href="data:,">
+    <link rel="icon" href="data:,">
 
     <title>SunChemical</title>
 
@@ -124,20 +125,17 @@
         </div>
     </div>
 
-    <script src="../../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
+    
     <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+    <script src="../../resources/js/efectos/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" 
+        crossorigin="anonymous"
+    >
     </script>
-    <!-- DATATABLES -->
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
-    </script>
-    <!-- BOOTSTRAP -->
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
-    </script>
+    <script src="../../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#tabla').load('../../app/api/tablaproductos.php');
+            $('#tabla').load('../../../app/api/tablaProductos.php');
         });
     </script>
 </body>

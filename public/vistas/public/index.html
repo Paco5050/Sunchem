@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="../../resources/img/dashboard/icono.png" type="favicon/x-icon">
+  <link rel="icon" href="data:,">
 
   <title>SunChemical</title>
 
@@ -14,12 +14,27 @@
 
   <!-- Custom styles for this template -->
   <link href="../../resources/css/dashboard/dashboard.css" rel="stylesheet">
+  <script src="../../resources/js/fontAwesome/all.min.js" defer></script>
+
+  <script src="../../resources/js/App/const/index.js"></script>
+  <script src="../../resources/js/App/Ajax/index.js"></script>
+
 
 </head>
 
 <body class="d-flex flex-column h-100 g-0">
 
 <header class="">
+
+  <!-- Trigger reclamos -->
+  <button class="fixed-bottom btn btn-warning text-capitalize"
+  data-bs-toggle="modal" data-bs-target="#ModalReclamo"
+    type="button">
+    <span>Hacer reclamo</span>
+    <i class="fas fa-exclamation"></i>
+  </button>
+  <!-- fin Trigger reclamos -->
+
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 col-lg-12">
     <div class="container-fluid mt-1">
@@ -27,21 +42,20 @@
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <?php if (false): ?>
+      <!--
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <form class="d-flex">
-            <a href="index.php" class="btn btn-dark btn-outline-light rounded mb-1 mt-1 ms-1">Cerrar Sesión</a>
-            <a href="Reclamos.php" class="ms-2 btn btn-dark w-25 py-2"><img
+            <a href="../dashboard/" class="btn btn-dark btn-outline-light rounded mb-1 mt-1 ms-1">Cerrar Sesión</a>
+            <a href="../dashboard/reclamos.html" class="ms-2 btn btn-dark w-25 py-2"><img
                 src="../../resources/img/dashboard/carrito.png" alt="" width="25px"></a>
           </form>
         </div>
-      <?php else: ?>
+      -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="d-flex">
-            <a href="login.php" class="btn btn-dark btn-outline-light rounded mb-1 mt-1 ms-1">Iniciar Sesión</a>
-          </form>
+          <a class="btn btn-dark btn-outline-light rounded mb-1 mt-1 ms-1" href="../dashboard/">
+            Iniciar Sesión
+          </a>
         </div>
-      <?php endif; ?>
       <div class="">
         <img src="../../resources/img/dashboard/logo1.png" height="50px" alt="">
       </div>
@@ -150,10 +164,75 @@
   </footer>
 </div>
 
+<!-- Modal Reclamos -->
+
+<div class="modal fade" id="ModalReclamo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropModalReclamo" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalReclamoLabel">Hacer Reclamo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-none">
+        <form class="reclamo__form">
+          <div class="mb-3">
+            <label for="nombre_cliente" class="col-form-label">Nombre</label>
+            <input type="text" maxlength="255" class="form-control nombre_cliente" id="nombre_cliente"/>
+          </div>
+          <div class="mb-3">
+            <label for="direccion_cliente" class="col-form-label">Dirección</label>
+            <input
+              class="form-control direccion_cliente"
+              id="direccion_cliente"
+              maxlength="255"
+              required
+              />
+          </div>
+          <div class="mb-3">
+            <label for="correo_cliente_older" class="col-form-label">Correo</label>
+            <input
+              class="form-control correo_cliente_older"
+              id="correo_cliente_older"
+              maxlength="300"
+              required/>
+          </div>
+          <select class="form-select tipos_reclamos" aria-label="Default select example">
+            <option selected value="0">Tipo de reclamo</option>
+          </select>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Reclamo</label>
+            <textarea
+              class="form-control"
+              id="reclamo_cliente"
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+      <div class="modal-body">
+        <form class="reclamo__form__correo">
+          <div class="mb-3">
+            <label for="correo_client" class="col-form-label">Correo</label>
+            <input class="form-control"
+              required
+              id="correo_client"
+              placeholder="usuario@dominio.com"
+              maxlength="300"></input>
+          </div>
+          <button class="btn btn-success">Aceptar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Final Modal Reclamos-->
+
 <!-- Bootstrap core JavaScript -->
 <script src="../../resources/js/efectos/jquery.min.js"></script>
 <script src="../../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="../../resources/js/dashboard/dashboard.js"></script>
+<script src="../../resources/js/App/Reclamo.js"></script>
 
 </body>
 </html>
