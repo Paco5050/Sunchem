@@ -14,6 +14,7 @@ class EmpleadosProfesiones extends Migration
     public function up()
     {
         Schema::create('empleados_profesiones',function(Blueprint $table){
+           $table->id();
            $table->foreignId('empleados_id')->constrained();
            $table->foreignId('profesiones_id')->constrained();
            $table->timestamps();

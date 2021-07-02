@@ -28,7 +28,8 @@ const ajax = function(Params){
       error = {
         code:-1,
         message:'se ha presentado un incoveniente al intentar procesar la solicitud, reintente de nuevo',
-        data: error
+        error: error,
+        data: null
       }
       console.log(error);
       return error;

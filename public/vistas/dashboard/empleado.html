@@ -18,6 +18,7 @@
   <!-- Custom styles for this template -->
   <link href="../../resources/css/dashboard/dashboard.css" rel="stylesheet">
 
+
 </head>
 
 <body class="g-0">
@@ -266,7 +267,7 @@
 
   <script type="text/javascript">
     $(document).ready(function () {
-      $('#tabla').load('../../../app/api/tablaEmpleado.php');
+      $('#tabla').load('../../../app/api/tablaEmpleado.php?api_token='+localStorage.token);
     });
   </script>
 </body>

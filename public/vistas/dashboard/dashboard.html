@@ -9,6 +9,8 @@
 
   <title>SunChemical</title>
 
+  <script defer src="../../resources/js/fontAwesome/all.min.js"></script>
+
   <!-- Custom styles for this template -->
   <link href="../../resources/css/dashboard/dashboard.css" rel="stylesheet" type="text/css">
 
@@ -30,11 +32,15 @@
     <div class="sidebar-heading"><img src="../../resources/img/dashboard/logo1.png" alt="" width="200px"
                                       class="rounded"></div>
     <div class="list-group list-group-flush col p-2">
-      <a id="menu4" class="list-group-item list-group-item-action w-100 py-2 my-1 rounded"><img
-        src="../../resources/img/dashboard/empleados.png" alt="" width="25px" class="img-fluid img-thumbnail"> Empleado</a>
-      <a id="menu2" class="list-group-item list-group-item-action w-100 py-2 my-1 rounded"><img
+      <button id="menu4" class="list-group-item list-group-item-action w-100 py-2 my-1 rounded"><img
+        src="../../resources/img/dashboard/empleados.png" alt="" width="25px" class="img-fluid img-thumbnail"> Empleado</button>
+      <button id="menu2" class="list-group-item list-group-item-action w-100 py-2 my-1 rounded"><img
         src="../../resources/img/dashboard/entradas.png" alt="" width="25px" class="img-fluid img-thumbnail">
-        Analisis</a>
+        Analisis</button>
+      <button id="menu3" class="list-group-item list-group-item-action w-100 py-2 my-1 rounded">
+        <i class="fas fa-exclamation"></i>
+        <span class="p-2">Reclamos</span>
+      </button>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
@@ -44,7 +50,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-dark p-1">
       <button class="btn btn-secondary" id="menu-toggle">
-        <img src="../../resources/img/dashboard/pngegg.png" alt="" width="30px">
+        <img src="../../resources/img/dashboard/pngegg.png" width="30px">
       </button>
       <div class="collapse navbar-collapse bar d-flex flex-row-reverse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">

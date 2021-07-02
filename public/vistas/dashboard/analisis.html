@@ -20,9 +20,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <h1 class="display-6">Análisis de Reclamos
-
-        </h1>
+        <h1 class="display-6">Gestión de analisis</h1>
       </div>
       <div class="col-lg-6">
         <img class="" src="../../resources/img/dashboard/crud_usuario.png" alt="" width="70px">
@@ -198,7 +196,7 @@
   </script>
   <script type="text/javascript">
     $(document).ready(function () {
-      $('#tabla').load('../../../app/api/tablaAnalisis.php');
+      $('#tabla').load('../../../app/api/tablaAnalisis.php?api_token='+localStorage.token);
     });
   </script>
 </body>

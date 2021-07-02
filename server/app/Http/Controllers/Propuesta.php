@@ -20,6 +20,9 @@ class Propuesta extends Controller
         $propuesta->reclamos_id = $request->json()->get('reclamos_id');
         $propuesta->empleados_id = $request->user()->id;
         $propuesta->save();
+        $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
+        $response->setData($propuesta->id);
+        return $response->json();
     }
     public function All(){
         $propuestas = Models\Propuesta::all();

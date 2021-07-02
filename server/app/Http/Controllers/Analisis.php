@@ -39,16 +39,19 @@ class Analisis extends Controller
         $analisis = Models\Analisis::query()
             ->join('propuestas','analisis.propuestas_id', '=', 'propuestas.id')
             ->join('reclamos','reclamos.id','=','propuestas.reclamos_id')
+            ->join('clientes','clientes.id','=','reclamos.clientes_id')
+            ->join('empleados','empleados.id','=','analisis.empleados_id')
             ->select(
-                'analisis.id as analisis_id',
-                'analisis.solucion as analisis',
-                'analisis.created_at as analisis_fecha',
-                'propuestas.id as propuesta_id',
-                'propuestas.propuesta as propuesta',
-                'propuestas.created_at as propuestas_fecha',
-                'reclamos.id as reclamos_id',
-                'reclamos.mensaje as reclamo',
-                'reclamos.created_at as reclamos_fecha'
+                'analisis.id as IdAnalisis',
+                'analisis.solucion as SolucionAnalisis',
+                'analisis.created_at as FechaAnalisis',
+                'propuestas.id as PropuestaId',
+                'propuestas.propuesta as MensajePropuesta',
+                'reclamos.id as IdReclamo',
+                'reclamos.mensaje as MensajeReclamo',
+                'clientes.nombre as NombreCliente',
+                'empleados.nombre as NombreEmpleado',
+                'empleados.apellido as ApellidoEmpleado'
             )->where('propuestas.estado',true)->get();
 
             if(count($analisis) == 0){

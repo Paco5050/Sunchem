@@ -31,14 +31,32 @@ class Reclamo extends Controller
     }
     public function All()
     {
-        $reclamo = Models\Reclamo::all();
+        try{
+            $reclamo = Models\Reclamo::query()
+                ->join('clientes','clientes.id','=','reclamos.clientes_id')
+                ->join('tipos_reclamos','tipos_reclamos.id','=','reclamos.tipos_reclamos_id')
+                ->select(
+                    'reclamos.id as IdReclamo',
+                    'reclamos.created_at as FechaReclamo',
+                    'tipos_reclamos.nombre as TipoReclamo',
+                    'clientes.nombre as NombreCliente',
+                    'reclamos.mensaje as DescripcionReclamo'
+                )
+                ->where('reclamos.estado','=',false)
+                ->get();
 
-        if (!$reclamo) {
-            return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT);
+            if (count($reclamo) == 0) {
+                return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT);
+            }
+            $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
+            $response->setData($reclamo);
+            return $response->json();
+
+        }catch (\Exception $err){
+            $response = ResponseDefault::getMessage(ResponseDefault::ERROR);
+            $response->setData($err);
+            return $response->json();
         }
-        $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
-        $response->setData($reclamo);
-        return $response->json();
     }
     public function TypesOfClaims()
     {
