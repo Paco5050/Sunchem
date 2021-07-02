@@ -49,78 +49,58 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="RegistrarEmpleado">
             <div class="row">
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Documento de identidad</label>
-                <input type="number" class="form-control" required>
+                <label for="IdentidadEmpleado" class="form-label">Documento de identidad</label>
+                <input id="IdentidadEmpleado" maxlength="255" type="number" class="form-control" required>
               </div>
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Nombre</label>
-                <input type="text" class="form-control" required>
+                <label for="NombreEmpleado" class="form-label">Nombre</label>
+                <input id="NombreEmpleado" type="text" maxlength="255" class="form-control" required>
               </div>
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Apellido</label>
-                <input type="text" class="form-control" required>
+                <label for="ApellidoEmpleado" class="form-label">Apellido</label>
+                <input id="ApellidoEmpleado" type="text" maxlength="255" class="form-control" required>
               </div>
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Correo</label>
-                <input type="text" class="form-control" required>
+                <label for="CorreoEmpleado" class="form-label">Correo</label>
+                <input id="CorreoEmpleado" type="text" maxlength="255" class="form-control" required>
               </div>
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Dirección</label>
-                <input type="text" class="form-control" required>
+                <label for="DireccionEmpleado" class="form-label">Dirección</label>
+                <input id="DireccionEmpleado" maxlength="240" type="text" class="form-control" required>
               </div>
               <div class="col-md-12">
                 <select name="ProfesionEmpleado" id="ProfesionEmpleado">
-                  <option selected value="0">Seleccione alguna profesión</option>
-                  <option value="-1">otras</option>
+                  <option selected value="0" id="ProfesionSelected" >Seleccione alguna profesión</option>
+                  <option value="-1" id="OtraProfesionEmpleado">otras</option>
                 </select>
-                <input type="text" placeholder="Ingeniero informático" readonly>
+                <input type="text" id="OtraProfesionEmpleadoInput" placeholder="Ingrese otra profesión">
               </div>
               <hr class="mt-5">
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Usuario</strong></label>
-                <input type="text" class="form-control" required>
+                <label for="UsuarioEmpleado" class="form-label">Usuario</strong></label>
+                <input id="UsuarioEmpleado" type="text" class="form-control" required maxlength="255">
               </div>
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Clave</label>
-                <input type="password" class="form-control" required>
+                <label for="ClaveEmpleado" class="form-label">Clave</label>
+                <input id="ClaveEmpleado" type="password" class="form-control" required maxlength="255">
               </div>
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Pregunta <strong>(de seguridad) </strong></label>
-                <input type="text" class="form-control" required>
+                <label for="PreguntaEmpleado" class="form-label">Pregunta <strong>(de seguridad) </strong></label>
+                <input id="PreguntaEmpleado" type="text" class="form-control" required maxlength="240">
               </div>
               <div class="col-md-12">
-                <label for="validationCustom01" class="form-label">Respuesta <strong>(de seguridad)</strong> </label>
-                <input type="password" class="form-control" required>
+                <label for="RespuestaEmpleado" class="form-label">Respuesta <strong>(de seguridad)</strong> </label>
+                <input id="RespuestaEmpleado" type="password" class="form-control" required maxlength="240">
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Crear</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Borrar-->
-  <div class="modal fade col-lg-12" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
-    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Mensaje de advertencia</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ¿Está seguro de eliminar el registro seleccionado?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Eliminar</button>
+          <button type="button" class="btn btn-primary" id="EmpleadoSubmit">Crear</button>
         </div>
       </div>
     </div>
@@ -236,6 +216,122 @@
   </script>
   <!-- BOOTSTRAP -->
   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+  <script src="../../resources/js/App/const/index.js"></script>
+  <script src="../../resources/js/App/Ajax/index.js"></script>
+
+  <script>
+
+    const ProfesionSelected =  document.querySelector('#ProfesionSelected');
+    ProfesionSelected.textContent = 'Cargando ... ';
+    const SelectProfesion   = document.querySelector('#ProfesionEmpleado');
+    const OtraProfesion     = document.querySelector('#OtraProfesionEmpleado');
+    const OtraProfesionEmpleadoInput = document.querySelector('#OtraProfesionEmpleadoInput');
+
+    const RegistrarEmpleadoForm = document.querySelector('#RegistrarEmpleado');
+
+    ajax({Uri:'Profesiones?api_token='+localStorage.token,
+          Method:'GET',
+          Request:null,
+          CallBack:(res)=>{
+            if(res.code == -1){
+              ProfesionSelected.textContent = 'No se ha podido cargar la lista';
+              return false;
+            }
+            res.data.forEach(Profesion => {
+              const Profesiones = document.createElement('option');
+              Profesiones.value = Profesion.id;
+              Profesiones.textContent = Profesion.nombre;
+              SelectProfesion.appendChild(Profesiones); 
+            });
+              
+            ProfesionSelected.textContent = 'Seleccionar profesión';
+          }
+    });
+
+    SelectProfesion.addEventListener('input',(e)=>{
+      if(e.target.value == -1){ // insertar nueva profesión
+        OtraProfesionEmpleadoInput.readOnly = false;
+      }else{
+        OtraProfesionEmpleadoInput.readOnly = true;
+        OtraProfesionEmpleadoInput.value = '';
+      }
+    })
+
+    RegistrarEmpleadoForm.onsubmit =  (e,req = null) => { // enviando datos
+      event.preventDefault();
+      
+      const IdentidadEmpleado = document.querySelector('#IdentidadEmpleado');
+      const NombreEmpleado    = document.querySelector('#NombreEmpleado');
+      const ApellidoEmpleado  = document.querySelector('#ApellidoEmpleado');
+      const CorreoEmpleado    = document.querySelector('#CorreoEmpleado');
+      const DireccionEmpleado   = document.querySelector('#DireccionEmpleado');
+      const UsuarioEmpleado   = document.querySelector('#UsuarioEmpleado');
+      const ClaveEmpleado   = document.querySelector('#ClaveEmpleado');
+      const PreguntaEmpleado   = document.querySelector('#PreguntaEmpleado');
+      const RespuestaEmpleado   = document.querySelector('#RespuestaEmpleado');
+
+      if(
+          !IdentidadEmpleado.value || 
+          !NombreEmpleado.value || 
+          !ApellidoEmpleado.value || 
+          !CorreoEmpleado.value || 
+          !DireccionEmpleado.value || 
+          !UsuarioEmpleado.value|| 
+          !ClaveEmpleado.value || 
+          !PreguntaEmpleado.value || 
+          !RespuestaEmpleado.value 
+         ){
+          alert('Debe de ingresar todos los campos solicitados');
+          return false;
+        }
+
+      if(SelectProfesion.value == 0){
+        alert('Debe seleccionar una profesión');
+        return false;
+      }
+
+      if(SelectProfesion.value == -1){
+        // insertar nueva profesion
+
+
+      }else{
+        // seleccionar profesión existente
+        const req = {
+          Request : {
+            "api_token" : localStorage.token,
+            "usuario" : UsuarioEmpleado.value.toLowerCase(),
+            "clave" : ClaveEmpleado.value,
+            "correo" : CorreoEmpleado.value.toLowerCase(),
+            "pregunta" : PreguntaEmpleado.value.toLowerCase(),
+            "respuesta" : RespuestaEmpleado.value.toLowerCase(),
+            "nombre" : NombreEmpleado.value.toLowerCase(),
+            "apellido" : ApellidoEmpleado.value.toLowerCase(),
+            "direccion" : DireccionEmpleado.value.toLowerCase(),
+            "profesion_id" : SelectProfesion.value,
+            "documento_identidad" : IdentidadEmpleado.value.toLowerCase()
+          },
+          Uri : 'ContratarEmpleado',
+          Method : 'POST',
+          CallBack:(res)=>{
+            if(res.code == -1 || res.code == 2){
+              alert(res.message);
+              return false;
+            }
+            RegistrarEmpleadoForm.reset();
+            location.reload();
+          }
+        }
+
+        ajax(req);
+      }
+    }
+
+    document.querySelector('#EmpleadoSubmit').addEventListener('click', e => {
+      RegistrarEmpleadoForm.onsubmit();
+    });
+
+  </script>
 
   <script type="text/javascript">
     $(document).ready(function () {

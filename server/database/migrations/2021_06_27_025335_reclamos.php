@@ -17,7 +17,7 @@ class Reclamos extends Migration
             $table->id();
             $table->string('mensaje',250);
             $table->timestamps();
-            $table->boolean(estado)->default(false);
+            $table->boolean('estado')->default(false);
             $table->foreignId('tipos_reclamos_id')->constrained();
             $table->foreignId('clientes_id')->constrained();
         });

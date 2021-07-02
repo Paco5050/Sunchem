@@ -171,7 +171,9 @@ class Administrador extends Controller
             $empleado->save();
             return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
         }catch (\Exception $err){
-            var_dump($err);
+            $response = ResponseDefault::getMessage(ResponseDefault::ERROR);
+            $response->setData($err);
+            return $response->json();
         }
     }
 }

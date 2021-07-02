@@ -45,7 +45,7 @@ $response = $response['data'];
             <tbody>
             <?php foreach($response as $key => $reclamo): ?>
                 <tr class="align-middle">
-                    <td><?=$reclamo['FechaReclamo']?></td>
+                    <td><?=DateFormat($reclamo['FechaReclamo'])?></td>
                     <td><?=$reclamo['TipoReclamo']?></td>
                   <td><?=$reclamo['NombreCliente']?></td>
                   <td><?=$reclamo['DescripcionReclamo']?></td>

@@ -51,7 +51,7 @@ $response = $response['data'];
             <tbody>
             <?php foreach($response as $key => $analisis): ?>
                 <tr class="align-middle">
-                    <td><?=$analisis['FechaAnalisis']?></td>
+                    <td><?=DateFormat($analisis['FechaAnalisis'])?></td>
                     <td><?=$analisis['MensajeReclamo']?></td>
                     <td><?=$analisis['NombreCliente']?></td>
                     <td><?=$analisis['NombreEmpleado'] . ' '. $analisis['ApellidoEmpleado']?></td>

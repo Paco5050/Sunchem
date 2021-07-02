@@ -60,12 +60,13 @@
           <td><?=$empleado['EstadoEmpleado']?></td>
           <td class="col-lg-2 ">
             <div class="row justify-content-md-center g-0">
-              <button type="button" class="btn btn-danger col col-lg-4 me-3 p-0" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop2" data-id=<?="$empleado[IdEmpleado]"?> >
+              <button type="button" class="btn btn-danger col col-lg-4 me-3 p-0" data-id=<?="$empleado[IdEmpleado]"?> 
+                  onclick="DespedirEmpleado(this);"
+                >
                 <img src="../../resources/img/dashboard/eliminar.png" width="25px">
               </button>
-              <button type="button" class="btn btn-primary col col-lg-4 p-0" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop3" data-id=<?="$empleado[IdEmpleado]"?>>
+              <button type="button" class="btn btn-primary col col-lg-4 p-0" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                data-id=<?="$empleado[IdEmpleado]"?>>
                 <img src="../../resources/img/dashboard/borrar.png" width="25px">
               </button>
             </div>
@@ -77,3 +78,34 @@
   </div>
 </div>
 <script src="../../resources/js/dashboard/tabla.js"></script>
+<script>
+  function DespedirEmpleado(e){
+    const IdEmpleado = e.dataset.id;
+    const req ={
+      Uri:'DespedirEmpleado/'+IdEmpleado+'?api_token='+localStorage.token,
+      Method:'PUT',
+      Request:null,
+      CallBack:(res)=>{
+        if(res.code == 1){
+          e.parentElement.parentElement.parentElement.remove();
+          return false;
+        }
+      }
+    };
+    if(confirm('Desea despedir a éste empleado?')){
+      ajax(req);
+      return false;
+    }
+  }
+
+  const IdentidadEmpleado = document.querySelector('#IdentidadEmpleado');
+  const NombreEmpleado    = document.querySelector('#NombreEmpleado');
+  const ApellidoEmpleado  = document.querySelector('#ApellidoEmpleado');
+  const CorreoEmpleado    = document.querySelector('#CorreoEmpleado');
+  const DireccionEmpleado   = document.querySelector('#DireccionEmpleado');
+  const UsuarioEmpleado   = document.querySelector('#UsuarioEmpleado');
+  const ClaveEmpleado   = document.querySelector('#ClaveEmpleado');
+  const PreguntaEmpleado   = document.querySelector('#PreguntaEmpleado');
+  const RespuestaEmpleado   = document.querySelector('#RespuestaEmpleado');
+
+</script>
