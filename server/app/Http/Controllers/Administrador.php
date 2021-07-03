@@ -147,6 +147,12 @@ class Administrador extends Controller
             $correo->correo = strtolower($request->json()->get('correo'));
             $correo->save();
 
+            /* 
+            $empleadoProfesion = Models\EmpleadoProfesion();
+            $empleadoProfesion->empleados_id = $empleado->id;
+            $empleadoProfesion->profesiones_id = $request->json()->get('profesion_id');
+            $empleadoProfesion->save();
+            */
             return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
         } catch (\Exception $err) {
             $response  = ResponseDefault::getMessage(ResponseDefault::ERROR);

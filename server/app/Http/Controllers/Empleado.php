@@ -55,7 +55,8 @@ class Empleado extends Controller
                     'empleados.direccion as DireccionEmpleado',
                     'estado_empleado.nombre as EstadoEmpleado',
                     'profesiones.nombre as ProfesionEmpleado',
-                    'roles.nombre as RolEmpleado'
+                    'roles.nombre as RolEmpleado',
+                    'empleados_profesiones.profesiones_id as IdProfesion'
                 )
                 ->where('empleados.estado_empleado_id','=','1')->get();
             if(count($empleados) == 0){

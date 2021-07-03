@@ -40,7 +40,7 @@
   </div>
 
   <!-- Modal Crear-->
-  <div class="modal fade col-lg-12" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  <div class="modal fade col-lg-12 modal__empleados" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -99,7 +99,6 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-primary" id="EmpleadoSubmit">Crear</button>
         </div>
       </div>
@@ -221,7 +220,6 @@
   <script src="../../resources/js/App/Ajax/index.js"></script>
 
   <script>
-
     const ProfesionSelected =  document.querySelector('#ProfesionSelected');
     ProfesionSelected.textContent = 'Cargando ... ';
     const SelectProfesion   = document.querySelector('#ProfesionEmpleado');

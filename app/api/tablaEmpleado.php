@@ -27,7 +27,7 @@
 ?>
 
 <div>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <button type="button" class="btn btn-primary BtnAgregarEmpleado" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
     Agregar registro
   </button>
   <br>
@@ -65,8 +65,20 @@
                 >
                 <img src="../../resources/img/dashboard/eliminar.png" width="25px">
               </button>
-              <button type="button" class="btn btn-primary col col-lg-4 p-0" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                data-id=<?="$empleado[IdEmpleado]"?>>
+              <button 
+                type="button" class="btn btn-primary col col-lg-4 p-0" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                
+                data-id=<?="$empleado[IdEmpleado]"?> 
+                data-IdentidadEmpleado=<?="$empleado[IdentidadEmpleado]"?>
+                data-NombreEmpleado=<?="$empleado[NombreEmpleado]"?>
+                data-ApellidoEmpleado=<?="$empleado[ApellidoEmpleado]"?>
+                data-ProfesionEmpleado=<?="$empleado[ProfesionEmpleado]"?>
+                data-CorreoEmpleado=<?="$empleado[CorreoEmpleado]"?>
+                data-DireccionEmpleado=<?="$empleado[DireccionEmpleado]"?>
+                data-RolEmpleado=<?="$empleado[RolEmpleado]"?>
+                data-EstadoEmpleado=<?="$empleado[EstadoEmpleado]"?>
+                data-IdProfesion=<?="$empleado[IdProfesion]"?>
+                onclick="ActualizarEmpleado(this)" >
                 <img src="../../resources/img/dashboard/borrar.png" width="25px">
               </button>
             </div>
@@ -79,6 +91,16 @@
 </div>
 <script src="../../resources/js/dashboard/tabla.js"></script>
 <script>
+  const RegistrarEmpleadoFnc = RegistrarEmpleadoForm.onsubmit;
+  document.querySelector('.BtnAgregarEmpleado').onclick = ()=>{ // cambiar formulario para agregar nuvos empleados
+    RegistrarEmpleadoForm.onsubmit = RegistrarEmpleadoFnc;
+    UsuarioEmpleado.parentElement.hidden = false;
+    ClaveEmpleado.parentElement.hidden = false;
+    PreguntaEmpleado.parentElement.hidden= false;
+    RespuestaEmpleado.parentElement.hidden = false;
+    document.querySelector('#EmpleadoSubmit').textContent = "Crear";
+    RegistrarEmpleadoForm.reset();
+  }
   function DespedirEmpleado(e){
     const IdEmpleado = e.dataset.id;
     const req ={
@@ -97,15 +119,42 @@
       return false;
     }
   }
+  function ActualizarEmpleado(e){
 
-  const IdentidadEmpleado = document.querySelector('#IdentidadEmpleado');
-  const NombreEmpleado    = document.querySelector('#NombreEmpleado');
-  const ApellidoEmpleado  = document.querySelector('#ApellidoEmpleado');
-  const CorreoEmpleado    = document.querySelector('#CorreoEmpleado');
-  const DireccionEmpleado   = document.querySelector('#DireccionEmpleado');
-  const UsuarioEmpleado   = document.querySelector('#UsuarioEmpleado');
-  const ClaveEmpleado   = document.querySelector('#ClaveEmpleado');
-  const PreguntaEmpleado   = document.querySelector('#PreguntaEmpleado');
-  const RespuestaEmpleado   = document.querySelector('#RespuestaEmpleado');
+    const IdentidadEmpleado   = document.querySelector('#IdentidadEmpleado');
+    const NombreEmpleado      = document.querySelector('#NombreEmpleado');
+    const ApellidoEmpleado    = document.querySelector('#ApellidoEmpleado');
+    const CorreoEmpleado      = document.querySelector('#CorreoEmpleado');
+    const DireccionEmpleado   = document.querySelector('#DireccionEmpleado');
+    const UsuarioEmpleado     = document.querySelector('#UsuarioEmpleado');
+    const ClaveEmpleado       = document.querySelector('#ClaveEmpleado');
+    const PreguntaEmpleado    = document.querySelector('#PreguntaEmpleado');
+    const RespuestaEmpleado   = document.querySelector('#RespuestaEmpleado');
+
+    const SelectProfesion   = document.querySelector('#ProfesionEmpleado');
+    const OtraProfesion     = document.querySelector('#OtraProfesionEmpleado');
+    const OtraProfesionEmpleadoInput = document.querySelector('#OtraProfesionEmpleadoInput');
+    const EmpleadoSubmit = document.querySelector('#EmpleadoSubmit');
+
+    UsuarioEmpleado.parentElement.hidden = true;
+    ClaveEmpleado.parentElement.hidden = true;
+    PreguntaEmpleado.parentElement.hidden= true;
+    RespuestaEmpleado.parentElement.hidden = true;
+
+    IdentidadEmpleado.value = e.dataset.identidadempleado;
+    NombreEmpleado.value = e.dataset.nombreempleado;
+    ApellidoEmpleado.value = e.dataset.apellidoempleado;
+    CorreoEmpleado.value = e.dataset.correoempleado;
+    DireccionEmpleado.value = e.dataset.direccionempleado;
+    SelectProfesion.value = e.dataset.idprofesion;
+    
+    EmpleadoSubmit.textContent = 'Actualizar';
+
+    document.querySelector('#RegistrarEmpleado').onsubmit = ()=>{
+
+
+    }
+
+  }
 
 </script>
