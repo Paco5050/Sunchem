@@ -1,6 +1,6 @@
 <?php
 
-define("MAIN_ROUTE", "http://localhost:3000/Susmit/server/public/");
+define("MAIN_ROUTE", "http://localhost/Susmit/server/public/");
 
 function DateFormat($value){
   $date  = date_create($value);
