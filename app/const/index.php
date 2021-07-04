@@ -1,6 +1,6 @@
 <?php
 
-define("MAIN_ROUTE", "http://192.168.1.80/SunChemical-main/server/public/");
+define("MAIN_ROUTE", "http://localhost:3000/Susmit/server/public/");
 
 function DateFormat($value){
   $date  = date_create($value);

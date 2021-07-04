@@ -26,7 +26,11 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 curl_close($curl);
 $response = json_decode($response,true);
-$response = $response['data'];
+if(isset($response['data'])){
+    $response = $response['data'];
+  }else{
+    $response = false;
+  }
 ?>
 
 <div class="col-lg-12">
@@ -44,6 +48,7 @@ $response = $response['data'];
                 </tr>
             </thead>
             <tbody>
+            <?php if($response) : ?>
             <?php foreach($response as $key => $analisis): ?>
                 <tr class="align-middle">
                     <td><?=DateFormat($analisis['FechaAnalisis'])?></td>
@@ -61,6 +66,7 @@ $response = $response['data'];
                     </td>
                 </tr>
             <?php endforeach; ?>
+            <?php endif ?>
             </tbody>
         </table>
     </div>

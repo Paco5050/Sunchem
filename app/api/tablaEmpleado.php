@@ -22,8 +22,11 @@
 
   $response = curl_exec($curl);
   $response = json_decode($response,true);
-
-  $response = $response['data'];
+  if(isset($response['data'])){
+    $response = $response['data'];
+  }else{
+    $response = false;
+  }
 ?>
 
 <div>
@@ -47,6 +50,7 @@
         </tr>
       </thead>
       <tbody>
+      <?php if($response) : ?>
         <?php foreach($response as $key => $empleado): ?>
         <tr class="align-middle" id=<?="$empleado[IdEmpleado]"?>>
           <td><?=$empleado['IdentidadEmpleado']?></td>
@@ -95,6 +99,7 @@
           </td>
         </tr>
         <?php endforeach; ?>
+      <?php endif?>
       </tbody>
     </table>
   </div>

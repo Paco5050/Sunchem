@@ -11,12 +11,8 @@ class Reportes extends Controller
     public function Analisis($id)
     {
         $html   = __DIR__;
-        $html   = explode('/',$html);
-        $html   = array_slice($html,0,6);
-        $html   = implode('/',$html);
-        $html  .= '/resources/views/ReporteAnalisis.html';
+        $html   = str_replace('app\Http\Controllers','resources\views\ReporteAnalisis.html',$html);
         $html   = file_get_contents($html);
-
         $app = Models\Analisis::query()
             ->join('propuestas','propuestas.id','=','analisis.propuestas_id')
             ->join('empleados as empleado_analisis','empleado_analisis.id','=','analisis.empleados_id')

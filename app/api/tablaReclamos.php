@@ -27,7 +27,11 @@ $response = curl_exec($curl);
 
 curl_close($curl);
 $response = json_decode($response,true);
-$response = $response['data'];
+if(isset($response['data'])){
+  $response = $response['data'];
+}else{
+  $response = false;
+}
 ?>
 <div class="col-lg-12">
     <div class="table-responsive">
@@ -43,6 +47,7 @@ $response = $response['data'];
                 </tr>
             </thead>
             <tbody>
+            <?php if($response) : ?>
             <?php foreach($response as $key => $reclamo): ?>
                 <tr class="align-middle">
                     <td><?=DateFormat($reclamo['FechaReclamo'])?></td>
@@ -71,6 +76,7 @@ $response = $response['data'];
                     </td>
                 </tr>
             <?php endforeach; ?>
+            <?php endif?>
             </tbody>
         </table>
     </div>
