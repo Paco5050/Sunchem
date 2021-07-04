@@ -17,13 +17,13 @@ class UsuariosTableSeeder extends Seeder
     public function run()
     {
         $user = new Usuario();
-        $user->usuario = 'admin';
-        $user->clave   = 'admin';
-        $user->roles_id = 1;
+        $user->usuario = 'root';
+        $user->clave   = 'root';
+        $user->roles_id = 3;
         $user->save();
 
         $mail = new Correo();
-        $mail->correo = 'admin@gmail.com';
+        $mail->correo = 'root@root.com';
         $mail->usuarios_id = $user->id;
         $mail->save();
 
@@ -36,29 +36,6 @@ class UsuariosTableSeeder extends Seeder
         $question = new Pregunta();
         $question->pregunta = 'primer carro';
         $question->respuesta = 'ford';
-        $question->usuarios_id = $user->id;
-        $question->save();
-        // other user
-        $user = new Usuario();
-        $user->usuario = 'trabajador';
-        $user->clave   = 'trabajador';
-        $user->roles_id = 2;
-        $user->save();
-
-        $mail = new Correo();
-        $mail->correo = 'trabajador@gmail.com';
-        $mail->usuarios_id = $user->id;
-        $mail->save();
-
-        $question = new Pregunta();
-        $question->pregunta = 'color favorito';
-        $question->respuesta = 'blanco';
-        $question->usuarios_id = $user->id;
-        $question->save();
-
-        $question = new Pregunta();
-        $question->pregunta = 'primer carro';
-        $question->respuesta = 'chevrolet';
         $question->usuarios_id = $user->id;
         $question->save();
 

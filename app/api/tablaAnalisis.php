@@ -30,11 +30,6 @@ $response = $response['data'];
 ?>
 
 <div class="col-lg-12">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Agregar registro
-    </button>
-    <br>
     <div>
         <table id="tablax" class="table table-responsive table-striped table-bordered table-condensed mt-3" style="width:100%">
             <thead class="text-center">
@@ -59,13 +54,9 @@ $response = $response['data'];
                     <td><?=$analisis['SolucionAnalisis']?></td>
                     <td class="col-lg-2 ">
                         <div class="row justify-content-md-center g-0">
-                        <button type="button" class="btn btn-danger col col-lg-4 me-3 p-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
-                            <img src="../../resources/img/dashboard/eliminar.png" alt="" width="25px">
-                        </button>
-                        <button type="button" class="btn btn-primary col col-lg-4 p-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
-                            <img src="../../resources/img/dashboard/borrar.png" alt="" width="25px">
-                        </button>
-
+                        <a type="button" class="btn btn-dark" href="<?= MAIN_ROUTE . "AnalisisReporte/$analisis[IdAnalisis]?api_token=$_GET[api_token]"?>">
+                            Descargar
+                        </a>
                         </div>
                     </td>
                 </tr>

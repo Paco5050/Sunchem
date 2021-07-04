@@ -49,7 +49,17 @@ $response = $response['data'];
                     <td><?=$reclamo['TipoReclamo']?></td>
                   <td><?=$reclamo['NombreCliente']?></td>
                   <td><?=$reclamo['DescripcionReclamo']?></td>
-                    <td class="col-lg-2">
+                  <td class="col-lg-2">
+                      <?php if($_GET['roles_id'] ==1 ) :?>
+                        <button type="button"
+                          class="btn btn-dark col col-lg-5 me-3 p-0 w-100 mb-2"
+                          data-bs-toggle="modal"
+                          data-bs-target="#staticBackdrop3"
+                          data-IdReclamo="<?="$reclamo[IdReclamo]"?>"
+                          onclick="HacerAnalisis(this)">
+                            Hacer Analisis
+                        </button>
+                      <?php endif?>
                       <button type="button"
                         class="btn btn-primary col col-lg-5 me-3 p-0 w-100 mb-2"
                         data-bs-toggle="modal"
@@ -95,6 +105,80 @@ $response = $response['data'];
     }
   }
 
-  
+  function HacerAnalisis(e){
+    const IdReclamo = e.dataset.idreclamo;
+    const ListaPropuesta = document.querySelector('.listPropuestas');
+    const OptionLabelPropuestas = document.querySelector('#optionLabelPropuestas');
+    ajax({
+      Uri:'PropuestasReclamos/' + IdReclamo + '?api_token=' + localStorage.token,
+      Method:'GET',
+      Request:null,
+      CallBack: res => {
+
+        [... ListaPropuesta.children].forEach( (propuesta,index) =>{
+          if(index > 0){
+            propuesta.remove();
+          }
+        })
+
+        if(res.code == 0){ // sin propuestas
+          OptionLabelPropuestas.textContent = res.message;
+          document.querySelector('.AnalisiaEmpleado').value = '';
+          document.querySelector('.AnalisiaEmpleado').readOnly = true;
+          document.querySelector('.AnalisiaEmpleado').placeholder =  'No tiene propuestas en las cuales basar su analisis';
+          document.querySelector('.BtnAnalisis').disabled = true;
+          return;
+        }
+        if(res.code = 1){ //  registros encontrados
+
+          OptionLabelPropuestas.textContent = 'Seleccione una propuesta';
+          document.querySelector('.AnalisiaEmpleado').readOnly = false;
+          document.querySelector('.AnalisiaEmpleado').placeholder = 'Redacte su propuesta';
+          document.querySelector('.BtnAnalisis').disabled = false;
+
+          res.data.forEach(propuesta => {
+            const Option  = document.createElement('option');
+            Option.value = propuesta.IdPropuesta;
+            Option.textContent = propuesta.propuesta + ' - ' + propuesta.NombreEmpleado + ' ' + propuesta.ApellidoEmpleado;
+            ListaPropuesta.appendChild(Option);
+          });
+
+
+          document.querySelector('.modal_analisis').onsubmit = e => { // enviando datos
+            event.preventDefault();
+            if(ListaPropuesta.value == 0){
+              alert('Seleccione una propuesta');
+              return;
+            }
+            if(!document.querySelector('.AnalisiaEmpleado').value){
+              alert('Redacte su analisis');
+              return;
+            }
+
+            ajax({
+              Uri:'Analisis',
+              Method:'POST',
+              Request:{
+                api_token:localStorage.token,
+                propuestas_id:ListaPropuesta.value,
+                solucion:document.querySelector('.AnalisiaEmpleado').value
+              },
+              CallBack: res => {
+                alert(res.message);
+                if(res.code == 1){
+                  location.reload();
+                  return;
+                }
+              }
+            });
+
+          }
+          return;
+        }
+      }
+    });
+  }
+
+
 
 </script>

@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use \Illuminate\Http\Request;
 use App\Http\Response\ResponseDefault;
 use App\Models;
-use Prophecy\Exception\Exception;
 
 class Administrador extends Controller
 {
@@ -61,7 +60,7 @@ class Administrador extends Controller
             $empleado->documento_identidad = $request->json()->get('documento_identidad');
             $empleado->nombre = strtolower($request->json()->get('nombre'));
             $empleado->apellido = strtolower($request->json()->get('apellido'));
-            $empleado->estado_empleado_id = $request->json()->get('roles_id');
+            $empleado->estado_empleado_id = 1;
             $empleado->usuario_id = $usuario->id;
             $empleado->direccion = strtolower($request->json()->get('direccion'));
             $empleado->save();

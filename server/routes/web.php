@@ -2,7 +2,6 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-use App\Http\Response\ResponseDefault;
 $router->get('/', function () use ($router) {
     return $router->getRoutes();
 });
@@ -33,6 +32,7 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->put('ProfesionActualizar', 'Profesion@Update');
     $router->get('Analisis', 'Analisis@All');
     $router->post('Analisis', 'Analisis@Insert');
+    $router->get('AnalisisReporte/{id}','Reportes@Analisis');
 
     // administrador y empleado
     $router->get('Propuestas', 'Propuesta@All');

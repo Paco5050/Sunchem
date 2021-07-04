@@ -57,23 +57,49 @@
             </div>
         </div>
     </div>
+    <!-- Modal analisis-->
+    <div class="modal fade col-lg-12" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Hacer Analisis</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="modal_analisis">
+                    <select class="form-select listPropuestas" size="5" aria-label="size 5 select example" required>
+                        <option disabled id="optionLabelPropuestas" value="0">Seleccione una propuesta</option>
+
+                    </select>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Mensaje</span>
+                        <textarea required maxlength="400" class="form-control AnalisiaEmpleado" aria-label="With textarea" placeholder="Redacte su analisis"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary BtnAnalisis" onclick="document.querySelector('.modal_analisis').onsubmit()">Enviar</button>
+            </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+    <script src="../../resources/js/efectos/jquery-3.4.1.js">
     </script>
     <!-- DATATABLES -->
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+    <script src="../../resources/js/efectos/jquery.dataTables.min.js">
     </script>
     <!-- BOOTSTRAP -->
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+    <script src="../../resources/js/efectos/dataTables.bootstrap4.min.js">
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#tabla').load('../../../app/api/tablaReclamos.php?api_token=' +localStorage.token);
+            $('#tabla').load('../../../app/api/tablaReclamos.php?api_token=' +localStorage.token + '&roles_id=' + localStorage.roles_id);
         });
     </script>
 </body>

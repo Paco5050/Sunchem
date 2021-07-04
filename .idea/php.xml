@@ -109,6 +109,10 @@
       <path value="$PROJECT_DIR$/server/vendor/vlucas/phpdotenv" />
       <path value="$PROJECT_DIR$/server/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/server/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/server/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/server/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/server/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/server/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3">

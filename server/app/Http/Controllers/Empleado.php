@@ -60,7 +60,9 @@ class Empleado extends Controller
                     'roles.id as IdRolEmpleado',
                     'empleados_profesiones.profesiones_id as IdProfesion'
                 )
-                ->where('empleados.estado_empleado_id','=','1')->get();
+                ->where('empleados.estado_empleado_id','=','1')
+                ->where('empleados.nombre','!=','root')
+                ->get();
             if(count($empleados) == 0){
                 return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT)->json();
             }

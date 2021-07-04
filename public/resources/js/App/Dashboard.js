@@ -17,3 +17,14 @@ UsuarioSalir.addEventListener('click', (e) => {
   };
   ajax(data)
 })
+if(localStorage.roles_id == 3){
+  document.querySelector('#menu2').className = document.querySelector('#menu4').className +' d-none';
+  document.querySelector('#menu3').className = document.querySelector('#menu4').className +' d-none';
+}
+if(localStorage.roles_id == 2){
+  document.querySelector('#menu4').className = document.querySelector('#menu4').className +' d-none';
+  document.querySelector('#menu2').className = document.querySelector('#menu4').className +' d-none';
+}
+if(localStorage.roles_id == 1){
+  document.querySelector('#menu4').className = document.querySelector('#menu4').className +' d-none';
+}

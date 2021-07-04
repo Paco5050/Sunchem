@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analisis</title>
+    <style>
+
+        .container{
+            padding: .4rem;
+            margin:1rem;
+        }
+        .card{
+
+        }
+        .card__header{
+
+        }
+        .card__title:first-child{
+            text-align: center;
+        }
+        .card__body{
+            margin-top: 4rem;
+        }
+        .card__body p{
+            text-align: justify;
+        }
+        .card__footer{
+            margin-top: 4rem;
+        }
+        .card__footer h5{
+            color:gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card__header">
+                <h3 class="card__title">Reporte del Análisis : #{%id%}</h3>
+            </div>
+            <div class="card__body">
+                <p>
+                    El empleado : <strong>{%empleado_responsable%}</strong>,
+                    portador del <strong>número de identificación: {%identificacion_responsable%}</strong>,
+                    redactó un Análisis en donde, tomando como referente a una propuesta
+                    del empleado: <strong>{%empleado_propuesta%}</strong>, portador del
+                    <strong>número de identificación: {%identificacion_responsable_propuesta%}</strong>, propuso:
+                    <em>" {%propuesta%} "</em>, por ende, el presente arrojó como resultado que: {%resultado%}, como
+                    respuesta al <stron>Reclamo: </stron> <em>  " {%reclamo%} " , por parte del cliente: {%cliente%} </em>.
+                </p>
+            </div>
+            <div class="card__footer">
+                <h5>Fecha: {%fecha%} </h5>
+                <h5>Fecha de descarga: {%fecha_descarga%}</h5>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

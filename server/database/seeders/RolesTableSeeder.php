@@ -17,9 +17,13 @@ class RolesTableSeeder extends Seeder
         $app = new Role();
         $app->nombre = 'administrador';
         $app->save();
-        
+
         $app = new Role();
         $app->nombre = 'básico';
+        $app->save();
+
+        $app = new Role();
+        $app->nombre = 'root';
         $app->save();
     }
 }

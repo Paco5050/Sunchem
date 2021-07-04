@@ -35,9 +35,18 @@ class Propuesta extends Controller
     }
     public function ProposelOfClaim($id){
         $Propuestas = Models\Propuesta::query()
+                    ->join('empleados','empleados.id','=','propuestas.empleados_id')
+                    ->select(
+                        'propuestas.id as IdPropuesta',
+                        'empleados.nombre as NombreEmpleado',
+                        'empleados.apellido as ApellidoEmpleado',
+                        'empleados.documento_identidad as DocumentoIdentidadEmpleado',
+                        'propuestas.reclamos_id as IdReclamos',
+                        'propuestas.propuesta as propuesta'
+                    )
                     ->where('reclamos_id',$id)
                     ->get();
-        if(!$Propuestas){
+        if(count($Propuestas)==0){
             return ResponseDefault::getMessage(ResponseDefault::NOT_REGEDIT)->json();
         }
         $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
