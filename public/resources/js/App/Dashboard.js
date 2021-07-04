@@ -17,6 +17,13 @@ UsuarioSalir.addEventListener('click', (e) => {
   };
   ajax(data)
 })
+window.addEventListener('load',function (e){
+  if(localStorage.roles_id <3){
+    $('#content').attr('src', 'reclamos.html');
+    return;
+  }
+  $('#content').attr('src', 'empleado.html');
+})
 if(localStorage.roles_id == 3){
   document.querySelector('#menu2').className = document.querySelector('#menu4').className +' d-none';
   document.querySelector('#menu3').className = document.querySelector('#menu4').className +' d-none';
