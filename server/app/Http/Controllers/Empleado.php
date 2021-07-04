@@ -47,6 +47,7 @@ class Empleado extends Controller
                     'usuarios.roles_id'
                 )
                 ->select(
+                    'usuarios.id as IdUsuario',
                     'empleados.id as IdEmpleado',
                     'empleados.documento_identidad as IdentidadEmpleado',
                     'empleados.nombre as NombreEmpleado',
@@ -56,6 +57,7 @@ class Empleado extends Controller
                     'estado_empleado.nombre as EstadoEmpleado',
                     'profesiones.nombre as ProfesionEmpleado',
                     'roles.nombre as RolEmpleado',
+                    'roles.id as IdRolEmpleado',
                     'empleados_profesiones.profesiones_id as IdProfesion'
                 )
                 ->where('empleados.estado_empleado_id','=','1')->get();

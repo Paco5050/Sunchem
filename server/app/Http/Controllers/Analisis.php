@@ -27,6 +27,10 @@ class Analisis extends Controller
             $propuesta->estado = 1;
             $propuesta->save();
 
+            $reclamo = Models\Reclamo::query()->where('id',$propuesta->reclamos_id)->first();
+            $reclamo->estado = true;
+            $reclamo->save();
+
             $response = ResponseDefault::getMessage(ResponseDefault::SUCCESS);
             $response->setData($analisis->id);
             return $response->json();

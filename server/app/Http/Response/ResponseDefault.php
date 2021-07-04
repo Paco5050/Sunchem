@@ -12,12 +12,15 @@ class ResponseDefault
     const USER_IN_USE = 'usuario en uso';
     const EMAIL_IN_USE = 'correo en uso';
     const EMPLOYEE_HIRED = 'el empleado está contratado';
+    const EMPLOYEE_EXIST = 'El empleado posee registros previos';
     //error
     const ERROR = 'Ha ocurrido un problema';
     const USER_NOT_FOUND = 'usuario no identificado';
     public static function getMessage($code){
         switch ($code){
             // success
+            case ResponseDefault::EMPLOYEE_EXIST:
+                return new Response(2,ResponseDefault::EMPLOYEE_EXIST,200);
             case ResponseDefault::EMPLOYEE_HIRED:
                 return new Response(2,ResponseDefault::EMPLOYEE_HIRED,200);
             case ResponseDefault::EMAIL_IN_USE:

@@ -23,7 +23,8 @@ class Administrador extends Controller
             'apellido' => 'required',
             'direccion' => 'required',
             'profesion_id' => 'required',
-            'documento_identidad' => 'required'
+            'documento_identidad' => 'required',
+            'roles_id' => 'required'
         ]);
 
         $usuario = $this->CheckUser($request);
@@ -42,7 +43,7 @@ class Administrador extends Controller
             $usuario = new Models\Usuario();
             $usuario->usuario = strtolower($request->json()->get('usuario'));
             $usuario->clave = $request->json()->get('clave');
-            $usuario->roles_id = 2;
+            $usuario->roles_id = $request->json()->get('roles_id');
             $usuario->save();
 
             $correo = new Models\Correo();
@@ -60,7 +61,7 @@ class Administrador extends Controller
             $empleado->documento_identidad = $request->json()->get('documento_identidad');
             $empleado->nombre = strtolower($request->json()->get('nombre'));
             $empleado->apellido = strtolower($request->json()->get('apellido'));
-            $empleado->estado_empleado_id = '1';
+            $empleado->estado_empleado_id = $request->json()->get('roles_id');
             $empleado->usuario_id = $usuario->id;
             $empleado->direccion = strtolower($request->json()->get('direccion'));
             $empleado->save();
@@ -87,7 +88,9 @@ class Administrador extends Controller
                     ->where('correo', strtolower($request->json()->get('correo')))
                     ->first();
         if ($correo) {
-            return ResponseDefault::getMessage(ResponseDefault::EMAIL_IN_USE)->json();
+            $response = ResponseDefault::getMessage(ResponseDefault::EMAIL_IN_USE);
+            $response->setData($correo);
+            return $response->json();
         }
         return false;
     }
@@ -101,18 +104,23 @@ class Administrador extends Controller
                     ->where('usuario', strtolower($request->json()->get('usuario')))
                     ->first();
         if ($usuario) {
-            return ResponseDefault::getMessage(ResponseDefault::USER_IN_USE)->json();
+            $response = ResponseDefault::getMessage(ResponseDefault::USER_IN_USE);
+            $response->setData($usuario);
+            return $response->json();
         }
         return false;
     }
 
     public function CheckEmployee(Request $request)
     {
+        $this->validate($request,[
+            'documento_identidad' => 'required'
+        ]);
         $empleado = Models\Empleado::query()
                     ->where('documento_identidad', $request->json()->get('documento_identidad'))
                     ->first();
         if ($empleado) {
-            $response = ResponseDefault::getMessage(ResponseDefault::EMPLOYEE_HIRED);
+            $response = ResponseDefault::getMessage(ResponseDefault::EMPLOYEE_EXIST);
             $response->setData($empleado);
             return $response->json();
         }
@@ -121,6 +129,7 @@ class Administrador extends Controller
 
     public function UpdateEmployee(Request $request)
     {
+
         $this->validate($request, [
             'id' => 'required',
             'documento_identidad' => 'required',
@@ -129,6 +138,12 @@ class Administrador extends Controller
             'direccion' => 'required',
             'estado_empleado_id' => 'required',
             'correo' => 'required',
+            "profesion_id"=>'required',
+            "roles_id"=>'required',
+            "usuario" =>'required',
+            "clave" =>'required',
+            "pregunta" =>'required',
+            "respuesta" =>'required'
         ]);
         try {
             $empleado = Models\Empleado::query()
@@ -142,17 +157,29 @@ class Administrador extends Controller
             $empleado->save();
 
             $correo = Models\Correo::query()
-                        ->where('usuarios_id', $empleado->usuario_id)
-                        ->first();
+                ->where('usuarios_id', $empleado->usuario_id)
+                ->first();
             $correo->correo = strtolower($request->json()->get('correo'));
             $correo->save();
 
-            /* 
-            $empleadoProfesion = Models\EmpleadoProfesion();
-            $empleadoProfesion->empleados_id = $empleado->id;
+            $empleadoProfesion = Models\EmpleadoProfesion::query()
+                ->where('empleados_id', $empleado->id)
+                ->first();
             $empleadoProfesion->profesiones_id = $request->json()->get('profesion_id');
             $empleadoProfesion->save();
-            */
+
+            $usuario = Models\Usuario::query()->where('id',$empleado->usuario_id)->first();
+            $usuario->usuario = strtolower($request->json()->get('usuario'));
+            $usuario->clave = $request->json()->get('clave');
+            $usuario->roles_id = $request->json()->get('roles_id');
+            $usuario->save();
+
+            $pregunta = Models\Pregunta::query()->where('usuarios_id',$usuario->id)->first();
+            $pregunta->pregunta = strtolower($request->json()->get('pregunta'));
+            $pregunta->respuesta = strtolower($request->json()->get('respuesta'));
+            $pregunta->usuarios_id = $usuario->id;
+            $pregunta->save();
+
             return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
         } catch (\Exception $err) {
             $response  = ResponseDefault::getMessage(ResponseDefault::ERROR);
@@ -161,19 +188,18 @@ class Administrador extends Controller
         }
     }
 
-    public function LayOffStaff($id)
+    public function LayOffStaff($id, $estado_empleado = 2)
     {
         try {
 
             $empleado = Models\Empleado::query()
                 ->where('id', $id)
-                ->where('estado_empleado_id', 1)
                 ->first();
             if (!$empleado) {
-                return ResponseDefault::getMessage(ResponseDefault::ERROR)->json();
+                return ResponseDefault::getMessage(ResponseDefault::USER_NOT_FOUND)->json();
             }
 
-            $empleado->estado_empleado_id = 2;
+            $empleado->estado_empleado_id = $estado_empleado;
             $empleado->save();
             return ResponseDefault::getMessage(ResponseDefault::SUCCESS)->json();
         }catch (\Exception $err){
@@ -181,5 +207,8 @@ class Administrador extends Controller
             $response->setData($err);
             return $response->json();
         }
+    }
+    public function HireEmployeeAgain($id){
+        return $this->LayOffStaff($id,1);
     }
 }

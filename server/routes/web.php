@@ -21,11 +21,12 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
 
     // administrador
     $router->post('ContratarEmpleado', 'Administrador@HireEmployee');
-    $router->get('ValidarCorreo', 'Administrador@CheckEmail');
-    $router->get('ValidarUsuario', 'Administrador@CheckUser');
+    $router->post('ValidarCorreo', 'Administrador@CheckEmail');
+    $router->post('ValidarUsuario', 'Administrador@CheckUser');
     $router->post('ValidarEmpleado', 'Administrador@CheckEmployee');
     $router->put('EmpleadoActualizar', 'Administrador@UpdateEmployee');
     $router->put('DespedirEmpleado/{id}', 'Administrador@LayOffStaff');
+    $router->put('RecontratarEmpleado/{id}', 'Administrador@HireEmployeeAgain');
     $router->get('Empleados', 'Empleado@All');
     $router->get('Profesiones', 'Profesion@All');
     $router->post('Profesion', 'Profesion@Insert');
