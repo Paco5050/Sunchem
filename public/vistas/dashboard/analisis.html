@@ -29,18 +29,10 @@
     <div class="row" id="tabla"></div>
   </div>
 
-  <!-- JQUERY -->
-  <script src="../../resources/js/efectos/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-    </script>
-  <!-- Bootstrap core JavaScript -->
+  <script src="../../resources/js/efectos/jquery.min.js"></script>
   <script src="../../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
-  <!-- DATATABLES -->
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
-  </script>
-  <!-- BOOTSTRAP -->
-  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
-  </script>
+  <script src="../../resources/js/efectos/jquery.dataTables.min.js"></script>
+  <script src="../../resources/js/efectos/dataTables.bootstrap4.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
       $('#tabla').load('../../../app/api/tablaAnalisis.php?api_token='+localStorage.token);

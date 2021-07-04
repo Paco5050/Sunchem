@@ -211,18 +211,13 @@
     </div>
   </div>
   <!-- JQUERY -->
-  <script src="../../resources/js/efectos/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-    </script>
+  <script src="../../resources/js/efectos/jquery-3.4.1.js"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="../../resources/js/bootstrap/bootstrap.bundle.min.js"></script>
 
   <!-- DATATABLES -->
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
-  </script>
-  <!-- BOOTSTRAP -->
-  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
+  <script src="../../resources/js/efectos/jquery.dataTables.min.js"></script>
+  <script src="../../resources/js/efectos/dataTables.bootstrap4.min.js"></script>
   <script src="../../resources/js/App/const/index.js"></script>
   <script src="../../resources/js/App/Ajax/index.js"></script>
 
@@ -248,9 +243,9 @@
               const Profesiones = document.createElement('option');
               Profesiones.value = Profesion.id;
               Profesiones.textContent = Profesion.nombre;
-              SelectProfesion.appendChild(Profesiones); 
+              SelectProfesion.appendChild(Profesiones);
             });
-              
+
             ProfesionSelected.textContent = 'Seleccionar profesión';
           }
     });
@@ -265,7 +260,7 @@
     })
 
     document.querySelector('#IdentidadEmpleado').addEventListener('input',e =>{
-    
+
       if(!e.target.value){
         e.target.value = '';
         e.target.placeholder = 'por ejemplo: 11795545';
@@ -276,7 +271,7 @@
 
     RegistrarEmpleadoForm.onsubmit =  (e,req = null) => { // enviando datos
       event.preventDefault();
-      
+
       const IdentidadEmpleado = document.querySelector('#IdentidadEmpleado');
       const NombreEmpleado    = document.querySelector('#NombreEmpleado');
       const ApellidoEmpleado  = document.querySelector('#ApellidoEmpleado');
@@ -294,7 +289,7 @@
       }
 
       // registro de empleados
-      ajax( 
+      ajax(
         {
           Uri:'ValidarEmpleado',
           Method:'POST',
@@ -329,15 +324,15 @@
             }
 
             if(
-                !IdentidadEmpleado.value || 
-                !NombreEmpleado.value || 
-                !ApellidoEmpleado.value || 
-                !CorreoEmpleado.value || 
-                !DireccionEmpleado.value || 
-                !UsuarioEmpleado.value|| 
-                !ClaveEmpleado.value || 
-                !PreguntaEmpleado.value || 
-                !RespuestaEmpleado.value 
+                !IdentidadEmpleado.value ||
+                !NombreEmpleado.value ||
+                !ApellidoEmpleado.value ||
+                !CorreoEmpleado.value ||
+                !DireccionEmpleado.value ||
+                !UsuarioEmpleado.value||
+                !ClaveEmpleado.value ||
+                !PreguntaEmpleado.value ||
+                !RespuestaEmpleado.value
               ){
                 alert('Debe de ingresar todos los campos solicitados');
                 return false;
@@ -438,7 +433,7 @@
                               }
                             }
                           )
-                          
+
                         }else{ // seleccionar profesión existente
                           ajax(req);
                         }
